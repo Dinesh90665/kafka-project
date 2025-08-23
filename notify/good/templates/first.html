@@ -1,46 +1,11 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <title>Notification Settings</title>
-  <style>
-   .container
-   {
-
-    height:500px;
-    width:1000px;
-    background-color:green;
-    margin-left:200px;
-    display:flex;
-    flex-wrap:wrap;
-    margin-top:10px;
-
-   }
-   .second
-   {
-    height:100px;
-    
-    width:1000px;
-    margin-left:200px;
-   }
-   .first
-   {
-    height:150px;
-    width:400px;
-    background-color:red;
-    margin:30px;
-    border-radius:20px;
-   }
-button
-{
-    margin-left:110px;
-}
-.men{
-  margin-left:260px;
-  background-color:white;
-}
-  </style>
 </head>
+<link rel="stylesheet" href="{% static 'style.css' %}">
 <body>
 <form method="post" id="notificationForm">
 <div class="second">
@@ -71,41 +36,7 @@ button
          <a href="{% url 'preferences_page' %}"><h2 class="men">Link to move notification preference</h2> </a> 
   </div>
   <form>
+      <script src="{% static 'second.js' %}"></script>
 </body>
-<script>
-     let buttons = document.querySelectorAll(".msg");
 
-  buttons.forEach(btn => {
-    btn.onclick = () => {
-      const action = btn.dataset.action;
- const actionDelays = {
-      transaction: 1000, // 1 sec
-      login: 2000,     // 2 sec
-      logout: 3000,     // 3 sec
-      like_photo: 4000      // 4 sec
-    };
-
-    // Get delay for this action, default to 1 second if not listed
-    const delay = actionDelays[action] || 1000;
-      setTimeout(()=>
-      {fetch("{% url 'send_notification' %}", {
-          
-        method: "POST",
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded",
-          "X-CSRFToken": "{{ csrf_token }}",
-        },
-        body: `action=${action}`
-      
-      })
-      .then(res => res.json())
-      .then(data => {
-        if(data.status === "success"){
-          btn.innerText = "Sent!";
-        }
-      });
-      },delay);
-    };
-  });
-</script>
 </html>
