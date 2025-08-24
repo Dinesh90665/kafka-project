@@ -4,39 +4,46 @@
 <head>
   <meta charset="UTF-8">
   <title>Notification Settings</title>
+  <link rel="stylesheet" href="{% static 'style.css' %}">
 </head>
-<link rel="stylesheet" href="{% static 'style.css' %}">
 <body>
-<form method="post" id="notificationForm">
+
 <div class="second">
-<h2>Here i designed the notification Settings with the different system which handle the most of the notifactions in a sec in a running simultaneously</h2>
+    <h2>Notification Settings: Handle multiple notifications simultaneously</h2>
 </div>
-  <div class="container">
- <div class='first'>
-    <button type="button" class="msg" data-action="like_photo">like the photo</button>
-    <button type="button" class="msg" data-action="transaction">transaction</button>
-    <button type="button" class="msg" data-action="login">login</button>
-    <button type="button" class="msg" data-action="logout">logout</button>
- </div>
-      <div class='first'>
-        <button type="button" class="msg" data-action="post_photo">post the photo</button>
-        {% comment %} <button type="button" class="msg" data-action="post_photo">post the photo</button>
-        <button type="button" class="msg" data-action="post_photo">post the photo</button>
-        <button type="button" class="msg" data-action="post_photo">post the photo</button> {% endcomment %}
 
-      </div>
-      
-        <div class='first'>
-            <button type="button" class="msg" data-action="added_item">added new items</button>
-        </div>
-          <div class='first'>
-        <button type="button" class="msg" data-action="login_system">login in the system</button>            
-          </div>
+<div class="container">
+    <div class="first">
+        <button type="button" class="msg" data-action="like_photo">Like the photo</button>
+        <button type="button" class="msg" data-action="transaction">Transaction</button>
+        <button type="button" class="msg" data-action="login">Login</button>
+        <button type="button" class="msg" data-action="logout">Logout</button>
+    </div>
 
-         <a href="{% url 'preferences_page' %}"><h2 class="men">Link to move notification preference</h2> </a> 
-  </div>
-  <form>
-      <script src="{% static 'second.js' %}"></script>
+    <div class="first">
+        <button type="button" class="msg" data-action="post_photo">Post the photo</button>
+    </div>
+
+    <div class="first">
+        <button type="button" class="msg" data-action="added_item">Added new items</button>
+    </div>
+
+    <div class="first">
+        <button type="button" class="msg" data-action="login_system">Login in the system</button>
+    </div>
+
+    <a href="{% url 'preferences_page' %}">
+        <h2 class="men">Link to move to notification preference</h2>
+    </a>
+</div>
+
+<!-- Pass URL from Django template -->
+<script>
+    const sendNotificationUrl = "{% url 'send_notification' %}";
+</script>
+
+<script src="{%static 'second.js' %}">
+</script>
+
 </body>
-
 </html>

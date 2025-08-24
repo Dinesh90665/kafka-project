@@ -58,6 +58,7 @@ def login_view(request):
 
 
 # ---------- KAFKA ----------
+@login_required
 def send_notification(request):
     if request.method == "POST":
         action = request.POST.get("action")
